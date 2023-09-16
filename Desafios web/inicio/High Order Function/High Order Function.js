@@ -39,6 +39,6 @@ A função sort() é utilizada para ordenar os elementos de um array de acordo c
 
 let arrayDesordenado = [3,6,4,3,2,1,5]
 
-const arrayOrdenado = arrayDesordenado.sort( (a,b) => b - a )
+const arrayOrdenado = arrayDesordenado.sort( (a,b) => a - b )
 
 console.log("array ordenado",arrayOrdenado);
