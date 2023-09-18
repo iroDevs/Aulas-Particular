@@ -1,4 +1,10 @@
+#ifndef NODO_H
+#define	NODO_H
+
 #include <iostream>
+
+#include "Produto.h"
+#include "ListaEncadeada.h"
 
 using namespace std;
 
@@ -11,7 +17,7 @@ class Nodo {
     public:
         Nodo();
         Nodo(Produto &p);
-        Nodo(Produto& orig);
+        Nodo(const Nodo& orig);
         virtual ~Nodo();
 
         Produto getItem();
@@ -22,4 +28,6 @@ class Nodo {
         Nodo* getProx() const;
         void setItem(Produto item);
         Produto getItem() const;
-}
+};
+
+#endif	/* NODO_H */
