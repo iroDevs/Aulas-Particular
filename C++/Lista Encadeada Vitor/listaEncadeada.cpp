@@ -133,6 +133,17 @@ void listaEncadeada::imprimir() {
     cout << " ] \n";
 }
 
+//Metodo proximo
+Nodo* listaEncadeada::proximo(int n){
+    if(n <= quant - 1){
+        Nodo* proximo = this.getElemento(n+1);
+        return proximo;
+    }else {
+        cout << "Nao existe proximo elemento."
+        return NULL;
+    }
+}
+
 /**
  *  GETTERS E SETTERS 
  */
