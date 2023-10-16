@@ -1,3 +1,13 @@
-const fazerAlgoAssincrono = require('./SimulandoPromisse')
+const pegueUsuarios = require('./SimulandoPromisse');
 
-console.log(fazerAlgoAssincrono(true))
+async function getUsuarios(){
+    try {
+        const usuarios = await pegueUsuarios(true);
+        console.log(usuarios);
+    } catch (error) {
+        console.log(error);
+    }
+ }
+
+    getUsuarios();
+    console.log("aaaa");

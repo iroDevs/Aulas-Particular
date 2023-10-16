@@ -1,0 +1,32 @@
+
+Desafio
+
+let usuarios = []
+let loading = true
+
+async function getAlluser(){
+    usuarios = await SimulandoPromisse(true);
+    loading = false
+    console.log("Dados Carregados \n",usuarios);
+}
+
+getAlluser();
+
+if (loading) {
+    console.log("Carregando...");
+}
+
+
+
+
+ERRO
+
+async function getAlluser(){
+    try {
+        let usuarios = await SimulandoPromisse(false);
+        console.log("Dados Carregados \n",usuarios);
+    }catch(err) {
+        console.log("Desculpe algo deu errado nossa equipe esta trabalhando para resolver o problema");
+    }
+}
+getAlluser()
