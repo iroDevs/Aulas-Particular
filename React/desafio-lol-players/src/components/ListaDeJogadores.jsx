@@ -7,6 +7,9 @@ export default function ListaDeJogadores({list,blockList,ChangeList}){
         <Container className='mt-2'>
             <Row>
                 {
+                    list.length === 0 ? <h1>Nenhum jogador encontrado</h1> : null
+                }
+                {
                     list.map((item,index)=> {
                         return (
                             <Col md={3} className='mt-1 mb-1'>
