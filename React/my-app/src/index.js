@@ -2,14 +2,42 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Pagina1 from './Pagina1';
+import Home from './home';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
+import ErroPage from './ErroPage';
+
+
+const router = createBrowserRouter([
+
+  {
+    path: "/Batata",
+    element:<Home />,
+  },
+  {
+    path: "/pagina1/:Email",
+    element: <Pagina1 />,
+    errorElement: <ErroPage />
+  },
+  {
+    path: "*",
+    element: <div>404</div>
+  }
+  
+
+]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
