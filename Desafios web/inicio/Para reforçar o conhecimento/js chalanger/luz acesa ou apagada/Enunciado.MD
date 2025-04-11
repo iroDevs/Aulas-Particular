@@ -1,2 +1,0 @@
-Desafio: Luz acesa ou apagada
-Crie uma página HTML com um fundo branco e um texto preto na tela escrito "aceso". Adicione um botão escrito "apagar". Quando o botão é clicado, a tela deve ficar escura, o texto deve ficar branco e o texto do botão deve mudar para "acender". Quando o botão é clicado novamente, a tela volta a ficar branca, o texto volta a ficar preto e o texto do botão muda novamente para "apagar".

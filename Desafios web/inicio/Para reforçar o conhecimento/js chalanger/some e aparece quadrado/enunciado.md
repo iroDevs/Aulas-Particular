@@ -1,2 +1,0 @@
-Desafio 3: Sumir ou aparecer quadrado
-Crie uma página HTML com um quadrado verde na tela e dois botões: um escrito "sumir" e outro escrito "aparecer". Quando o botão "sumir" é clicado, o quadrado deve desaparecer da tela. Quando o botão "aparecer" é clicado, o quadrado deve reaparecer na tela.
