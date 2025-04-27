@@ -8,7 +8,7 @@ export default function QuadradoProvider({children}){
     const store = {
         valor,
         setValor,
-      }
+    }
 
     return(
         <>

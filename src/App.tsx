@@ -16,15 +16,15 @@ esquema -> dizer como o objeto vai ser
 validar baseado no esquema
 */
 
-const UsuarioSchema = z.object({
+{/*const UsuarioSchema = z.object({
   nome: z.string(),
   idade: z.number().min(18, 'Idade deve ser maior que 18').max(100, 'Idade deve ser menor que 100'),
   email: z.string().email(),
   senha: z.string().min(8),
-})
+})*/}
 
 function App() {
-  const [usuario, setUsuario] = useState({
+  /*const [usuario, setUsuario] = useState({
     nome: "",
     idade: 0,
     email: "",
@@ -35,20 +35,16 @@ function App() {
     console.log(error);
     const validationError = fromError(error);
     console.log(validationError);
+  }*/
 
 
-
-  }
-
-
-  //Enviar para backend
 
 
   return (
     <>
-    {/*<QuadradoProvider>
+    <QuadradoProvider>
       <Quadrado1 />
-    </QuadradoProvider>*/}
+    </QuadradoProvider>
 
 
     </>
