@@ -1,7 +1,7 @@
 
 import Quadrado2 from "./Quadrado2";
 import { useContext } from "react";
-import { QuadradoContexto } from "../App";
+import { QuadradoContexto } from "../context/QuadradoContexto";
 export default function Quadrado1(){
 
     const conteudo_do_contexto = useContext(QuadradoContexto)

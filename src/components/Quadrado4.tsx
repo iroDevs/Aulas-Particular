@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import IQuadrado from "./interfaces";
-import { QuadradoContexto } from "../App";
+import { QuadradoContexto } from "../context/QuadradoContexto";
 
 export default function Quadrado4(){
     const conteudo_do_contexto = useContext(QuadradoContexto)
