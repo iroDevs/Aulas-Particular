@@ -1,9 +1,13 @@
 import Fastify from 'fastify';
 import DatabaseManager from './Database/Database';
+import cors from '@fastify/cors';
 
 const app = Fastify({
     logger: true,
 })
+
+// Configuração do CORS
+app.register(cors)
 
 const db = new DatabaseManager().getDatabase()
 
@@ -38,7 +42,6 @@ app.get('/users/:id', async (request, reply) => {
 })
 
 app.post('/users', async (request, reply) => {
-    //(nome, idade, email, cep, rua, bairro, numero
     const body = request.body as UserCreatedRequest
     const newUser = {
         nome: body.nome,
