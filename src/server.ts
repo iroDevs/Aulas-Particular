@@ -6,8 +6,11 @@ const app = Fastify({
     logger: true,
 })
 
-// Configuração do CORS
-app.register(cors)
+app.register(cors, {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: false,
+});
 
 const db = new DatabaseManager().getDatabase()
 
@@ -22,6 +25,8 @@ type UserCreatedRequest = {
 }
 
 // const users = await axios.get('http://localhost:3000/users')
+
+
 
 //Primeira rota
 app.get('/users', async (request, reply) => {
@@ -39,6 +44,21 @@ app.get('/users/:id', async (request, reply) => {
         return reply.status(404).send({ error: 'Usuário não encontrado' })
     }
     return reply.status(200).send(user)
+})
+
+app.delete('/users/:id', async (request, reply) => {
+    const { id } = request.params as { id: number }
+    console.log(id);
+    // verifica se o usaurio tem vendas
+    const deleteSalesStmt = db.prepare('DELETE FROM Vendas WHERE id_usuario = ?')
+    deleteSalesStmt.run(id)
+
+    const stmt = db.prepare('DELETE FROM Usuarios WHERE id = ?')
+    const result = stmt.run(id)
+    if (result.changes === 0) {
+        return reply.status(404).send({ error: 'Usuário não encontrado' })
+    }
+    return reply.status(204).send()
 })
 
 app.post('/users', async (request, reply) => {
