@@ -1,19 +1,21 @@
 
 import { FastifyRequest, FastifyReply } from 'fastify';
-import UserServices from '../service/UserServices';
-import UserRepositories from '../repositories/UserRepositories';
-import DatabaseManager from '../Database/Database';
 import FactoryUserService from '../factory/factory-user-service';
+import { z } from 'zod';
+import { InputUserDto } from '../dtos/UserDto';
 
-type UserCreatedRequest = {
-    nome: string
-    idade: number
-    email: string
-    cep: string
-    rua: string
-    bairro: string
-    numero: string
-}
+const UserSchema = z.object({
+    id: z.number().int().optional(),
+    nome: z.string().min(1),
+    idade: z.number().int().positive(),
+    email: z.string().email(),
+    cep: z.string().min(8).max(8),
+    rua: z.string().min(1),
+    bairro: z.string().min(1),
+    numero: z.string().min(1)
+});
+
+type UserCreatedRequest = z.infer<typeof UserSchema>;
 
 
 async function getUserById(req: FastifyRequest, res: FastifyReply) {
@@ -23,16 +25,19 @@ async function getUserById(req: FastifyRequest, res: FastifyReply) {
 
         const user = await userService.getUserById(id);
         return res.status(200).send(user);
-    } catch (error: any) {
-        return res.status(404).send({ error: error.message });
+    } catch (error: unknown) {
+        return res.status(404).send({ error });
     }
 }
 
 async function createUser(req: FastifyRequest, res: FastifyReply) {
     try {
         const userService = await FactoryUserService();
-        const userData: UserCreatedRequest = req.body as UserCreatedRequest;
-        const user = await userService.createUser(userData);
+        const userData: InputUserDto = req.body as UserCreatedRequest;
+        const parsedData = UserSchema.parse(userData) as InputUserDto;
+
+        const user = await userService.createUser(parsedData);
+
         return res.status(201).send(user);
     } catch (error: any) {
         return res.status(400).send({ error: error.message });
