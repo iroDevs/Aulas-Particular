@@ -2,11 +2,13 @@ import Database from 'better-sqlite3';
 
 
 export default class DatabaseManager {
-  private db: any;
+  private db: Database.Database;
+  private type: string;
 
-  constructor() {
+  constructor(type: 'sqlite' | 'mysql' | 'postgresql') {
     this.db = new Database("database.db");
     this.initialize();
+    this.type = type || 'sqlite';
   }
 
   private initialize() {
@@ -43,6 +45,11 @@ export default class DatabaseManager {
   }
 
   public getDatabase(): Database.Database {
-    return this.db;
+    if (this.type === 'sqlite') {
+      return this.db;
+    }
+    throw new Error('Database type not supported yet. Only SQLite is implemented.');
   }
+
+
 }
